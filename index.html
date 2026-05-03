@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>For You 💖</title>
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+#intro {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+}
+#main { display:none; }
+#message {
+    position:absolute;
+    top:40%;
+    width:100%;
+    font-size:26px;
+}
+.heart {
+    position:absolute;
+    color:pink;
+    animation:float 5s linear infinite;
+}
+@keyframes float {
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
 
+<body>
+
+<div id="intro">💌 Nhấn vào đây...</div>
+
+<div id="main">
+<div id="message"></div>
+</div>
+
+<script>
+const text = "Tớ thích cậu nhiều lắm 💖";
+let i=0;
+
+document.getElementById("intro").onclick=function(){
+    this.style.display="none";
+    document.getElementById("main").style.display="block";
+    type();
+}
+
+function type(){
+    if(i<text.length){
+        document.getElementById("message").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(type,50);
+    }
+}
+
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+},200);
+</script>
+
+</body>
+</html>
